@@ -1,4 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Strona główna</h1>
+<div class="container main-content">
+    <h1>Zwrot biletów</h1>
+    <p>Sprawdź, ile otrzymasz pieniędzy po zwróceniu biletu ZTM</p>
+
+    <div class="alert alert-info" role="alert">
+        Jeżeli nie pamiętasz daty aktywacji biletu, podaj do kiedy bilet jest ważny i okres obowiązywania biletu (30/90 dni).
+    </div>
+
+    <div class="form">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="startDate">Kiedy aktywowałeś bilet?</label>
+                    <input type="date" class="form-control" id="startDate">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="stopDate">Do kiedy bilet jest ważny?</label>
+                    <input type="date" class="form-control" id="stopDate">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="period">Okres obowiązywania biletu</label>
+                    <input type="number" class="form-control" id="period" placeholder="30 czy 90" min="30" max="90">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="cancelDate">Data anulowania biletu</label>
+                    <input type="date" class="form-control" id="cancelDate" aria-describedby="cancelDataHelp" placeholder="Wybierz datę">
+                    <small id="cancelDataHelp" class="form-text text-muted">Podaj datę anulowania biletu.</small>
+                </div>
+            </div>
+          <button type="submit" class="btn btn-light">Oblicz kwotę zwrotu</button>
+        </form>
+    </div>
+</div>
+
 {% endblock %}
