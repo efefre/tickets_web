@@ -23,8 +23,8 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="period">Okres obowiązywania biletu</label>
-                    <input type="number" class="form-control" id="period" placeholder="30 czy 90" min="30" max="90">
+                    <label for="{{ form.period.id_for_label }}">Okres obowiązywania biletu</label>
+                    {{ form.period }}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="cancelDate">Data anulowania biletu</label>
