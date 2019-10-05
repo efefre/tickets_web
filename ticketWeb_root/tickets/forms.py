@@ -5,12 +5,14 @@ class TicketForm(forms.Form):
                                  widget=forms.DateInput(format=('%d-%m-%Y'),
                                                         attrs={'placeholder': 'dd-mm-rrrr',
                                                                'class':'form-control',
-                                                               'type':'date'}))
+                                                               'type':'date'}),
+                                 required=False)
     stop_date = forms.DateField(label='Do kiedy bilet jest ważny?', input_formats='%d-%m-%Y',
                                  widget=forms.DateInput(format=('%d-%m-%Y'),
                                                         attrs={'placeholder': 'dd-mm-rrrr',
                                                                'class':'form-control',
-                                                               'type':'date'}))
+                                                               'type':'date'}),
+                                required=False)
     cancel_date = forms.DateField(label='Data anulowania biletu.', input_formats='%d-%m-%Y',
                                 widget=forms.DateInput(format=('%d-%m-%Y'),
                                                        attrs={'placeholder': 'dd-mm-rrrr',
@@ -18,4 +20,5 @@ class TicketForm(forms.Form):
                                                               'type': 'date'}))
     period = forms.IntegerField(label='Okres obowiązywania biletu.', min_value=30, max_value=90,
                                 widget=forms.NumberInput(attrs={'placeholder':'30 albo 90 dni',
-                                                                'class':'form-control',}))
+                                                                'class':'form-control'}),
+                                required=False)
