@@ -22,3 +22,6 @@ class TicketForm(forms.Form):
                                 widget=forms.NumberInput(attrs={'placeholder':'30 albo 90 dni',
                                                                 'class':'form-control'}),
                                 required=False)
+    ticket_price = forms.FloatField(label='Ile zapłaciłaś/zapłaciłeś za bilet?',
+                                    widget=forms.NumberInput(attrs={'class':'form-control',
+                                                                    'step':0.01}))
