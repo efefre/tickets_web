@@ -14,12 +14,14 @@
 
 <body>
     <!-- Main Content -->
+    {% include 'tickets/_alerts.html' %}
     {% block content %}
     {% endblock %}
 
     <!-- JS -->
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
