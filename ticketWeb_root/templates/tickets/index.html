@@ -12,13 +12,17 @@
         <form method="POST">
             {% csrf_token %}
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="{{ form.start_date.id_for_label }}">Kiedy aktywowałeś bilet?</label>
                     {{ form.start_date }}
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="{{ form.stop_date.id_for_label }}">Do kiedy bilet jest ważny?</label>
                     {{ form.stop_date }}
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="{{ form.cancel_date.id_for_label }}">Kiedy chcesz anulować bilet?</label>
+                    {{ form.cancel_date }}
                 </div>
             </div>
             <div class="form-row">
@@ -27,8 +31,8 @@
                     {{ form.period }}
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="{{ form.cancel_date.id_for_label }}">Data anulowania biletu</label>
-                    {{ form.cancel_date }}
+                    <label for="{{ form.ticket_price.id_for_label }}">Ile zapłaciłaś/zapłaciłeś za bilet?</label>
+                    {{ form.ticket_price }}
                 </div>
             </div>
           <button type="submit" class="btn btn-light">Oblicz kwotę zwrotu</button>
