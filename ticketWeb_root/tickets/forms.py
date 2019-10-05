@@ -17,4 +17,5 @@ class TicketForm(forms.Form):
                                                               'class': 'form-control',
                                                               'type': 'date'}))
     period = forms.IntegerField(label='Okres obowiązywania biletu.', min_value=30, max_value=90,
-                                widget=forms.NumberInput(attrs={'placeholder':'30 albo 90 dni'}))
+                                widget=forms.NumberInput(attrs={'placeholder':'30 albo 90 dni',
+                                                                'class':'form-control',}))
