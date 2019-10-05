@@ -30,6 +30,10 @@ def result(request):
             # 'Wprowadzono błędną datę. Nie można zwrócić biletu przed jego aktywacją'
             return redirect(reverse('tickets:index'))
 
+        if cancel_date > stop_date:
+            # 'Wprowadzono błędną datę. Nie można zwrócić biletu po terminie ważności'
+            return redirect(reverse('tickets:index'))
+
         new_ticket = Ticket(start_date, period, stop_date, cancel_date, ticket_price)
 
         context = new_ticket.count_money_back()
