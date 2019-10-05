@@ -17,8 +17,8 @@
                     {{ form.start_date }}
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="stopDate">Do kiedy bilet jest ważny?</label>
-                    <input type="date" class="form-control" id="stopDate">
+                    <label for="{{ form.stop_date.id_for_label }}">Do kiedy bilet jest ważny?</label>
+                    {{ form.stop_date }}
                 </div>
             </div>
             <div class="form-row">
