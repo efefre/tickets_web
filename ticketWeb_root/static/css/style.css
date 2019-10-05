@@ -15,3 +15,7 @@ body {
 .text-muted {
     color: silver !important;
 }
+
+#message {
+    margin-top: 50px;
+}
