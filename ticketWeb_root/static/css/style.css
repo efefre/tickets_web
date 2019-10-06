@@ -8,6 +8,10 @@ body {
     text-align: center;
 }
 
+.alert-blue {
+    background-color: #96A3E3;
+}
+
 .form{
     margin-top: 6%;
 }
