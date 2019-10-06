@@ -24,7 +24,9 @@ def result(request):
         cancel_date = request.POST.get("cancel_date")
         if cancel_date != '':
             cancel_date = Ticket.convert_date(cancel_date)
-        period = int(request.POST.get("period"))
+        period = request.POST.get("period")
+        if period != '':
+            period = int(request.POST.get("period"))
         ticket_price = float(request.POST.get("ticket_price"))
 
         if start_date == '':
