@@ -1,0 +1,33 @@
+body {
+    background-color: #4F66DD;
+    color: #fff;
+}
+
+.main-content {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.alert-blue {
+    background-color: #96A3E3;
+}
+
+.form{
+    margin-top: 6%;
+}
+
+.text-muted {
+    color: silver !important;
+}
+
+#message {
+    margin-top: 50px;
+}
+
+.details {
+    margin-top: 5%;
+}
+
+.ticket-detail {
+    text-align: left;
+}
