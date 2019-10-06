@@ -19,3 +19,11 @@ body {
 #message {
     margin-top: 50px;
 }
+
+.details {
+    margin-top: 5%;
+}
+
+.ticket-detail {
+    text-align: left;
+}
