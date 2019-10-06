@@ -41,6 +41,10 @@ def result(request):
             messages.error(request, 'Wprowadzono błędną datę. Nie można zwrócić biletu po terminie ważności')
             return redirect(reverse('tickets:index'))
 
+        if period != 30 and period != 90:
+            messages.error(request, 'Wprowadzono błędną wartość. Dozwolone wartości: 30 albo 90')
+            return redirect(reverse('tickets:index'))
+
         new_ticket = Ticket(start_date, period, stop_date, cancel_date, ticket_price)
 
         context = new_ticket.count_money_back()
