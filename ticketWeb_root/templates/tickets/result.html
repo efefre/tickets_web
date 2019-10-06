@@ -1,6 +1,26 @@
+
 {% extends 'base.html' %}
 {% block content %}
-<h1>Wyniki</h1>
+<div class="container main-content">
+    <h1>Otrzymasz: {{ context.money_back }} zł</h1>
+    <div class="row details">
+        <div class="col ticket-detail">
+            <h2>Szczegóły zakodowanego biletu</h2>
+            <ul>
+                <li>Data aktywacji biletu: {{ context.start_date }}</li>
+                <li>Do kiedy bilet jest ważny: {{ context.stop_date }}</li>
+                <li>Rodzaj biletu: {{ context.period }} dni</li>
+            </ul>
+        <hr/>
+            <h2>Szczegóły zwrotu</h2>
+            <ul>
+                <li>Data anulowania biletu: {{ context.cancel_date }}</li>
+                <li>Opłata manipulacyjna: {{ context.handling_fee }} zł</li>
+                <li>Poniesiony koszt: {{ context.costs_incurred}} zł ({{ context.one_day_cost }} zł/dzień)</li>
+            </ul>
+        </div>
+    </div>
+    <a href="/" class="btn btn-light">Wróć do strony głównej</a>
+</div>
 
-{{context}}
 {% endblock %}
