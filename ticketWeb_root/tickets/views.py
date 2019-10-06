@@ -29,6 +29,11 @@ def result(request):
             period = int(request.POST.get("period"))
         ticket_price = float(request.POST.get("ticket_price"))
 
+
+        if start_date == '' and stop_date == '':
+            messages.error(request, 'Musisz podać datę aktywacji bilet albo do kiedy bilet jest ważny')
+            return redirect(reverse('tickets:index'))
+
         if start_date == '':
             start_date = stop_date - datetime.timedelta(days=period) - datetime.timedelta(days=1)
 
