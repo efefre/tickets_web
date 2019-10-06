@@ -1,5 +1,6 @@
 # Tickets WEB
 > This is a web app in which you can count how much money you will receive back, if you cancel your ZTM (Warsaw) ticket.
+It is web version of: https://github.com/efefre/tickets
 
 ## Table of contents
 * [General info](#general-info)
