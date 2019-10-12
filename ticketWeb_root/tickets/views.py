@@ -1,15 +1,22 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views import View
 
 from .forms import TicketForm
 from .utils import Ticket
 import datetime
 
-# Create your views here.
-def index(request):
-    form = TicketForm()
-    return render(request, 'tickets/index.html', {'form':form})
+
+class IndexView(View):
+    form_class = TicketForm
+    template_name = 'tickets/index.html'
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form':form})
+
+
 
 def result(request):
     form = TicketForm()
