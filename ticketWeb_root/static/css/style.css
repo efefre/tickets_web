@@ -31,3 +31,8 @@ body {
 .ticket-detail {
     text-align: left;
 }
+
+.form ul.errorlist  {
+    list-style-type: none;
+    color: #E38769;
+}
