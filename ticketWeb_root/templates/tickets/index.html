@@ -9,35 +9,63 @@
     </div>
 
     <div class="form">
-        <form method="POST" action="{% url 'tickets:result' %}">
+        <form method="POST">
             {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="{{ form.start_date.id_for_label }}">Kiedy aktywowałeś bilet?</label>
                     {{ form.start_date }}
+                    {{ form.start_date.errors }}
                 </div>
                 <div class="form-group col-md-4">
                     <label for="{{ form.stop_date.id_for_label }}">Do kiedy bilet jest ważny?</label>
                     {{ form.stop_date }}
+                    {{ form.stop_date.errors }}
                 </div>
                 <div class="form-group col-md-4">
                     <label for="{{ form.cancel_date.id_for_label }}">Kiedy chcesz anulować bilet?</label>
                     {{ form.cancel_date }}
+                    {{ form.cancel_date.errors }}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="{{ form.period.id_for_label }}">Okres obowiązywania biletu</label>
                     {{ form.period }}
+                    {{ form.period.errors }}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="{{ form.ticket_price.id_for_label }}">Ile zapłaciłaś/zapłaciłeś za bilet?</label>
                     {{ form.ticket_price }}
+                    {{ form.ticket_price.errors }}
                 </div>
             </div>
           <button type="submit" class="btn btn-light">Oblicz kwotę zwrotu</button>
         </form>
     </div>
+    {% if context %}
+    <div class="result">
+        <h2>Otrzymasz: {{ context.money_back }} zł</h2>
+        <div class="row details">
+            <div class="col ticket-detail">
+                <h2>Szczegóły zakodowanego biletu</h2>
+                <ul>
+                    <li>Data aktywacji biletu: {{ context.start_date }}</li>
+                    <li>Do kiedy bilet jest ważny: {{ context.stop_date }}</li>
+                    <li>Rodzaj biletu: {{ context.period }} dni</li>
+                </ul>
+            <hr/>
+                <h2>Szczegóły zwrotu</h2>
+                <ul>
+                    <li>Data anulowania biletu: {{ context.cancel_date }}</li>
+                    <li>Opłata manipulacyjna: {{ context.handling_fee }} zł</li>
+                    <li>Poniesiony koszt: {{ context.costs_incurred }} zł ({{ context.one_day_cost }} zł/dzień)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
 </div>
 
 {% endblock %}
