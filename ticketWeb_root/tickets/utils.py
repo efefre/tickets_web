@@ -14,7 +14,17 @@ class Ticket:
 
     @staticmethod
     def convert_date(date):
-        year, month, day = date.split('-')
+        val_1, val_2, val_3 = date.split('-')
+        # Chrome/Brave/Firefox
+        if len(val_1) == 4:
+            year = val_1
+            day = val_3
+        # Safari
+        else:
+            day = val_1
+            year = val_3
+        month = val_2
+
         return datetime.date(int(year), int(month), int(day))
 
     def count_money_back(self):
