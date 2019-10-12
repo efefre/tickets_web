@@ -1,19 +1,19 @@
 from django import forms
 
 class TicketForm(forms.Form):
-    start_date = forms.DateField(label='Kiedy aktywowałeś bilet?', input_formats='%d-%m-%Y',
+    start_date = forms.DateField(label='Kiedy aktywowałeś bilet?', input_formats=['%d-%m-%Y'],
                                  widget=forms.DateInput(format=('%d-%m-%Y'),
                                                         attrs={'placeholder': 'dd-mm-rrrr',
                                                                'class':'form-control',
                                                                'type':'date'}),
                                  required=False)
-    stop_date = forms.DateField(label='Do kiedy bilet jest ważny?', input_formats='%d-%m-%Y',
+    stop_date = forms.DateField(label='Do kiedy bilet jest ważny?', input_formats=['%d-%m-%Y'],
                                  widget=forms.DateInput(format=('%d-%m-%Y'),
                                                         attrs={'placeholder': 'dd-mm-rrrr',
                                                                'class':'form-control',
                                                                'type':'date'}),
                                 required=False)
-    cancel_date = forms.DateField(label='Data anulowania biletu.', input_formats='%d-%m-%Y',
+    cancel_date = forms.DateField(label='Data anulowania biletu.', input_formats=['%d-%m-%Y'],
                                 widget=forms.DateInput(format=('%d-%m-%Y'),
                                                        attrs={'placeholder': 'dd-mm-rrrr',
                                                               'class': 'form-control',
