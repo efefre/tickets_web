@@ -18,9 +18,13 @@ class TicketForm(forms.Form):
                                                        attrs={'placeholder': 'dd-mm-rrrr',
                                                               'class': 'form-control',
                                                               'type': 'date'}))
-    period = forms.IntegerField(label='Okres obowiązywania biletu.', min_value=30, max_value=90,
-                                widget=forms.NumberInput(attrs={'placeholder':'30 albo 90 dni',
-                                                                'class':'form-control'}))
+    PERIOD_CHOICES = [
+        (30, '30 dni'),
+        (90, '90 dni')
+    ]
+    period = forms.ChoiceField(label='Okres obowiązywania biletu.', choices=PERIOD_CHOICES,
+                               widget= forms.Select(attrs={'class':'form-control'}))
+
     ticket_price = forms.FloatField(label='Ile zapłaciłaś/zapłaciłeś za bilet?',
                                     widget=forms.NumberInput(attrs={'class':'form-control',
                                                                     'step':0.01}))
