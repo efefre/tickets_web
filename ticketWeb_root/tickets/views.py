@@ -13,36 +13,32 @@ class IndexView(View):
         form = self.form_class()
         return render(request, self.template_name, {'form':form})
 
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
 
+        if form.is_valid():
+            start_date = form.cleaned_data["start_date"]
+            stop_date = form.cleaned_data["stop_date"]
+            cancel_date = form.cleaned_data["cancel_date"]
+            period = int(form.cleaned_data["period"])
+            ticket_price = float(form.cleaned_data["ticket_price"])
 
-def result(request):
-    form = TicketForm()
+            if start_date == None:
+                start_date = stop_date - datetime.timedelta(days=period) - datetime.timedelta(days=1)
 
-    if request.method == 'POST':
-        start_date = request.POST.get("start_date")
-        if start_date != '':
-            start_date = Ticket.convert_date(start_date)
-        stop_date = request.POST.get("stop_date")
-        if stop_date != '':
-            stop_date = Ticket.convert_date(stop_date)
-        cancel_date = request.POST.get("cancel_date")
-        if cancel_date != '':
-            cancel_date = Ticket.convert_date(cancel_date)
-        period = request.POST.get("period")
-        if period != '':
-            period = int(request.POST.get("period"))
-        ticket_price = float(request.POST.get("ticket_price"))
+            if stop_date == None:
+                stop_date = start_date + datetime.timedelta(days=period) - datetime.timedelta(days=1)
 
+            new_ticket = Ticket(start_date, period, stop_date, cancel_date, ticket_price)
 
-        if start_date == '' and stop_date == '':
-            messages.error(request, 'Musisz podać datę aktywacji bilet albo do kiedy bilet jest ważny')
-            return redirect(reverse('tickets:index'))
+            context = new_ticket.count_money_back()
 
-        if start_date == '':
-            start_date = stop_date - datetime.timedelta(days=period) - datetime.timedelta(days=1)
+            args =  {'form' : form,
+                     'context' : context}
 
-        if stop_date == '':
-            stop_date = start_date + datetime.timedelta(days=period) - datetime.timedelta(days=1)
+            return render(request, self.template_name, args)
+        else:
+            return render(request, self.template_name, {'form':form } )
 
         if cancel_date < start_date:
             messages.error(request, 'Wprowadzono błędną datę. Nie można zwrócić biletu przed jego aktywacją')
