@@ -52,3 +52,10 @@ class TicketForm(forms.Form):
             if start_date >= cancel_date:
                 self.add_error('start_date', 'Data aktywacji biletu nie może być późniejsza niż data anulowania biletu.')
                 self.add_error('cancel_date', 'Data anulowania biletu nie może być wcześniejsza niż data aktywacji biletu.')
+
+        if stop_date != None:
+            if stop_date < cancel_date:
+                self.add_error('stop_date',
+                               'Data końca ważności biletu nie może być wcześniejsza niż data anulowania biletu.')
+                self.add_error('cancel_date',
+                               'Data anulowania biletu nie może być późniejsza niż data końca ważności biletu.')
