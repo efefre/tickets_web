@@ -1,5 +1,6 @@
 from django import forms
 
+
 class TicketForm(forms.Form):
     start_date = forms.DateField(label='Kiedy aktywowałeś bilet?', input_formats=['%d-%m-%Y',
                                                                                   '%Y-%m-%d'],
@@ -31,3 +32,13 @@ class TicketForm(forms.Form):
     ticket_price = forms.FloatField(label='Ile zapłaciłaś/zapłaciłeś za bilet?',
                                     widget=forms.NumberInput(attrs={'class':'form-control',
                                                                     'step':0.01}))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get('start_date')
+        stop_date = cleaned_data.get('stop_date')
+        cancel_date = cleaned_data.get('cancel_date')
+        errors = []
+        if start_date == None and stop_date == None:
+            msg ='Musisz podać datę aktywacji bilet albo do kiedy bilet jest ważny'
+            self.add_error(None, msg)
