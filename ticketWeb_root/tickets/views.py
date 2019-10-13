@@ -24,7 +24,7 @@ class IndexView(View):
             ticket_price = float(form.cleaned_data["ticket_price"])
 
             if start_date == None:
-                start_date = stop_date - datetime.timedelta(days=period) - datetime.timedelta(days=1)
+                start_date = stop_date - datetime.timedelta(days=period) + datetime.timedelta(days=1)
 
             if stop_date == None:
                 stop_date = start_date + datetime.timedelta(days=period) - datetime.timedelta(days=1)
