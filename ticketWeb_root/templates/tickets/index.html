@@ -4,6 +4,13 @@
     <h1>Zwrot biletów</h1>
     <p>Sprawdź, ile otrzymasz pieniędzy po zwróceniu biletu ZTM</p>
 
+
+    <div class="alert alert-danger" role="alert">
+        <strong>UWAGA!</strong>
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
+    </div>
     <div class="alert alert-blue" role="alert">
         Jeżeli nie pamiętasz daty aktywacji biletu, podaj do kiedy bilet jest ważny i okres obowiązywania biletu (30/90 dni).
     </div>
