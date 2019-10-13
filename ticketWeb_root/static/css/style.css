@@ -31,3 +31,15 @@ body {
 .ticket-detail {
     text-align: left;
 }
+
+.form ul.errorlist  {
+    list-style-type: none;
+    color: #E38769;
+    font-size: 10px;
+    text-align: left;
+    padding-left: 2px;
+}
+
+div.result {
+    margin-top: 5%;
+}
