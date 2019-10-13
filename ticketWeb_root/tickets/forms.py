@@ -38,7 +38,12 @@ class TicketForm(forms.Form):
         start_date = cleaned_data.get('start_date')
         stop_date = cleaned_data.get('stop_date')
         cancel_date = cleaned_data.get('cancel_date')
-        errors = []
+
         if start_date == None and stop_date == None:
             msg ='Musisz podać datę aktywacji bilet albo do kiedy bilet jest ważny'
             self.add_error(None, msg)
+
+        if start_date != None and stop_date != None:
+            if start_date >= stop_date:
+                self.add_error('start_date', 'Data aktywacji biletu nie może być późniejsza niż data końca biletu.')
+                self.add_error('stop_date', 'Data końca biletu nie może być wcześniejsza niż data aktywacji biletu.')
