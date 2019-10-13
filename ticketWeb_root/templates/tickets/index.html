@@ -5,12 +5,14 @@
     <p>Sprawdź, ile otrzymasz pieniędzy po zwróceniu biletu ZTM</p>
 
 
+    {% if form.non_field_errors %}
     <div class="alert alert-danger" role="alert">
         <strong>UWAGA!</strong>
         {% for error in form.non_field_errors %}
             {{ error }}
         {% endfor %}
     </div>
+    {% endif %}
     <div class="alert alert-blue" role="alert">
         Jeżeli nie pamiętasz daty aktywacji biletu, podaj do kiedy bilet jest ważny i okres obowiązywania biletu (30/90 dni).
     </div>
