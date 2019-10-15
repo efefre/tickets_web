@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.views import View
 from .forms import TicketForm
-from .utils import Ticket
+from ticket_click.utils import Ticket
+
 import datetime
+
 
 
 class IndexView(View):
