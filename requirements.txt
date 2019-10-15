@@ -1,3 +1,9 @@
+Click==7.0
 Django==2.2.6
+pendulum==2.0.5
+python-dateutil==2.8.0
 pytz==2019.2
+pytzdata==2019.3
+six==1.12.0
 sqlparse==0.3.0
+git+https://github.com/efefre/ticket_click.git#egg=ticket_click
