@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from .forms import TicketForm
 from ticket_click.utils import Ticket
+from django.conf import settings
 
 import datetime
 
@@ -30,6 +31,20 @@ class IndexView(View):
 
             if stop_date == None:
                 stop_date = start_date + datetime.timedelta(days=period) - datetime.timedelta(days=1)
+
+            try:
+                HANDLING_FEE_PERCENT = settings.HANDLING_FEE_PERCENT
+                MAX_HANDLING_FEE = settings.MAX_HANDLING_FEE
+            except:
+                HANDLING_FEE_PERCENT = Ticket.handling_fee_percent
+                MAX_HANDLING_FEE = Ticket.max_handling_fee
+
+
+            if HANDLING_FEE_PERCENT:
+                Ticket.handling_fee_percent = HANDLING_FEE_PERCENT
+
+            if MAX_HANDLING_FEE:
+                Ticket.max_handling_fee = MAX_HANDLING_FEE
 
             new_ticket = Ticket(start_date, period, stop_date, cancel_date, ticket_price)
 
