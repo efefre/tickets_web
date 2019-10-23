@@ -128,3 +128,8 @@ STATICFILES_DIRS = [STATIC_DIR,]
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+#Handling fee for ticket
+HANDLING_FEE_PERCENT = 0.2
+MAX_HANDLING_FEE = 50
+
