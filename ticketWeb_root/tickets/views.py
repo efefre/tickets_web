@@ -32,21 +32,11 @@ class IndexView(View):
             if stop_date == None:
                 stop_date = start_date + datetime.timedelta(days=period) - datetime.timedelta(days=1)
 
-            try:
-                HANDLING_FEE_PERCENT = settings.HANDLING_FEE_PERCENT
-                MAX_HANDLING_FEE = settings.MAX_HANDLING_FEE
-            except:
-                HANDLING_FEE_PERCENT = Ticket.handling_fee_percent
-                MAX_HANDLING_FEE = Ticket.max_handling_fee
 
+            handling_fee_percent = getattr(settings, 'HANDLING_FEE_PERCENT', None)
+            max_handling_fee = getattr(settings, 'MAX_HANDLING_FEE', None)
 
-            if HANDLING_FEE_PERCENT:
-                Ticket.handling_fee_percent = HANDLING_FEE_PERCENT
-
-            if MAX_HANDLING_FEE:
-                Ticket.max_handling_fee = MAX_HANDLING_FEE
-
-            new_ticket = Ticket(start_date, period, stop_date, cancel_date, ticket_price)
+            new_ticket = Ticket(start_date, period, stop_date, cancel_date, ticket_price, handling_fee_percent, max_handling_fee)
 
             context = new_ticket.count_money_back()
 
