@@ -16,4 +16,4 @@ I did this project to practice Django 2.
 
 
 ## Status
-Project is: _in progress_.
+Project is: _no longer continue_.
