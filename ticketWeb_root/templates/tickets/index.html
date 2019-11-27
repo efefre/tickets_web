@@ -4,6 +4,28 @@
     <h1>Zwrot biletów</h1>
     <p>Sprawdź, ile otrzymasz pieniędzy po zwróceniu długookresowego biletu w Warszawie.</p>
 
+    {% if context %}
+    <div class="result">
+        <h2>Otrzymasz: {{ context.money_back }} zł</h2>
+        <div class="row details">
+            <div class="col ticket-detail">
+                <h2>Szczegóły zakodowanego biletu</h2>
+                <ul>
+                    <li>Data aktywacji biletu: {{ context.start_date }}</li>
+                    <li>Do kiedy bilet jest ważny: {{ context.stop_date }}</li>
+                    <li>Rodzaj biletu: {{ context.period }} dni</li>
+                </ul>
+            <hr/>
+                <h2>Szczegóły zwrotu</h2>
+                <ul>
+                    <li>Data anulowania biletu: {{ context.cancel_date }}</li>
+                    <li>Opłata manipulacyjna: {{ context.handling_fee }} zł</li>
+                    <li>Poniesiony koszt: {{ context.costs_incurred }} zł ({{ context.one_day_cost }} zł/dzień)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     {% if form.non_field_errors %}
     <div class="alert alert-danger" role="alert">
@@ -16,6 +38,8 @@
     <div class="alert alert-blue" role="alert">
         Jeżeli nie pamiętasz daty aktywacji biletu, podaj, do kiedy bilet jest ważny i okres obowiązywania biletu (30/90 dni).
     </div>
+
+
 
     <div class="form">
         <form method="POST">
@@ -52,29 +76,6 @@
           <button type="submit" class="btn btn-light">Oblicz kwotę zwrotu</button>
         </form>
     </div>
-    {% if context %}
-    <div class="result">
-        <h2>Otrzymasz: {{ context.money_back }} zł</h2>
-        <div class="row details">
-            <div class="col ticket-detail">
-                <h2>Szczegóły zakodowanego biletu</h2>
-                <ul>
-                    <li>Data aktywacji biletu: {{ context.start_date }}</li>
-                    <li>Do kiedy bilet jest ważny: {{ context.stop_date }}</li>
-                    <li>Rodzaj biletu: {{ context.period }} dni</li>
-                </ul>
-            <hr/>
-                <h2>Szczegóły zwrotu</h2>
-                <ul>
-                    <li>Data anulowania biletu: {{ context.cancel_date }}</li>
-                    <li>Opłata manipulacyjna: {{ context.handling_fee }} zł</li>
-                    <li>Poniesiony koszt: {{ context.costs_incurred }} zł ({{ context.one_day_cost }} zł/dzień)</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-
 </div>
 
 {% endblock %}
