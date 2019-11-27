@@ -77,6 +77,11 @@ class TicketForm(forms.Form):
                                'Zwróć uwagę na rok w podanych datach.')
                 self.add_error('cancel_date',
                                'Zwróć uwagę na rok w podanych datach.')
+            elif start_date == None:
+                start_date = stop_date - datetime.timedelta(days=period) + datetime.timedelta(days=1)
+                if start_date >= cancel_date:
+                    self.add_error('cancel_date',
+                                   f'Bilet był aktywowany: {start_date.strftime("%d-%m-%Y")}. Data anulowania biletu nie może być wcześniejsza niż data aktywacji biletu.')
 
         if ticket_price <= 0:
             self.add_error('ticket_price',
