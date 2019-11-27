@@ -4,7 +4,7 @@ from django import forms
 
 
 class TicketForm(forms.Form):
-    start_date = forms.DateField(label='Kiedy aktywowałeś bilet?', input_formats=['%d-%m-%Y',
+    start_date = forms.DateField(label='Kiedy aktywowałaś/aktywowałeś bilet?', input_formats=['%d-%m-%Y',
                                                                                   '%Y-%m-%d'],
                                  widget=forms.DateInput(format=('%d-%m-%Y'),
                                                         attrs={'placeholder': 'dd-mm-rrrr',
@@ -41,6 +41,7 @@ class TicketForm(forms.Form):
         stop_date = cleaned_data.get('stop_date')
         cancel_date = cleaned_data.get('cancel_date')
         period = int(cleaned_data.get('period'))
+        ticket_price = float(cleaned_data.get('ticket_price'))
 
         if start_date == None and stop_date == None:
             msg ='Musisz podać datę aktywacji bilet albo do kiedy bilet jest ważny'
@@ -76,3 +77,7 @@ class TicketForm(forms.Form):
                                'Zwróć uwagę na rok w podanych datach.')
                 self.add_error('cancel_date',
                                'Zwróć uwagę na rok w podanych datach.')
+
+        if ticket_price <= 0:
+            self.add_error('ticket_price',
+                           'Wprowadź poprawną cenę (większą od 0).')
