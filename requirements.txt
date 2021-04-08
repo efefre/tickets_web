@@ -1,5 +1,5 @@
 Click==7.0
-Django==2.2.18
+Django==2.2.20
 pendulum==2.0.5
 python-dateutil==2.8.0
 pytz==2019.2
